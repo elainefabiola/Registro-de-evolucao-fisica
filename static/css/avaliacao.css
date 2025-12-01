@@ -1,0 +1,36 @@
+/* ============================================
+   AVALIACAO.CSS - Estilos da Página de Avaliação
+   ============================================ */
+
+.form-section {
+    background: #f9f9f9;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+}
+
+.form-section h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: normal;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 8px;
+}
+
+.required {
+    color: #8b0000;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: flex-end;
+}
+
+.help-text {
+    font-size: 11px;
+    color: #666;
+    margin-top: 3px;
+}

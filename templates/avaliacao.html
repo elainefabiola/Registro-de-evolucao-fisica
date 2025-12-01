@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block title %}Nova Avaliação - Registro de Evolução Física{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/avaliacao.css') }}">
+{% endblock %}
+
+{% block content %}
+<h2 style="margin-bottom: 30px; color: #333;">Nova Avaliação Física</h2>
+
+<form id="avaliacaoForm" method="POST" action="/api/avaliacao">
+    <!-- Dados Básicos -->
+    <div class="form-section">
+        <h3>Dados Básicos</h3>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="aluno_id">ID do Aluno <span class="required">*</span></label>
+                <input type="number" id="aluno_id" name="aluno_id" required min="1" placeholder="Ex: 1">
+                <div class="help-text">Identificador único do aluno no sistema</div>
+            </div>
+            <div class="form-group">
+                <label for="profissional_nome">Nome do Profissional</label>
+                <input type="text" id="profissional_nome" name="profissional_nome" placeholder="Ex: João Silva">
+            </div>
+        </div>
+    </div>
+
+    <!-- Medidas Básicas -->
+    <div class="form-section">
+        <h3>Medidas Básicas</h3>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="peso">Peso (kg) <span class="required">*</span></label>
+                <input type="number" id="peso" name="peso" step="0.01" min="20" max="180" required placeholder="Ex: 70.5">
+                <div class="help-text">Entre 20 e 180 kg</div>
+            </div>
+            <div class="form-group">
+                <label for="altura">Altura (m) <span class="required">*</span></label>
+                <input type="number" id="altura" name="altura" step="0.01" min="1.00" max="2.50" required placeholder="Ex: 1.75">
+                <div class="help-text">Entre 1.00 e 2.50 metros</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Composição Corporal -->
+    <div class="form-section">
+        <h3>Composição Corporal (Opcional)</h3>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="peso_osso">Peso Ósseo (kg)</label>
+                <input type="number" id="peso_osso" name="peso_osso" step="0.01" placeholder="Ex: 5.2">
+            </div>
+            <div class="form-group">
+                <label for="peso_residual">Peso Residual (kg)</label>
+                <input type="number" id="peso_residual" name="peso_residual" step="0.01" placeholder="Ex: 3.5">
+            </div>
+            <div class="form-group">
+                <label for="peso_muscular">Peso Muscular (kg)</label>
+                <input type="number" id="peso_muscular" name="peso_muscular" step="0.01" placeholder="Ex: 50.0">
+            </div>
+        </div>
+    </div>
+
+    <!-- Circunferências -->
+    <div class="form-section">
+        <h3>Circunferências (cm) - Opcional</h3>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="torax">Tórax</label>
+                <input type="number" id="torax" name="torax" step="0.01" min="0" placeholder="Ex: 95.0">
+            </div>
+            <div class="form-group">
+                <label for="braco_direito_contraido">Braço Direito Contraído</label>
+                <input type="number" id="braco_direito_contraido" name="braco_direito_contraido" step="0.01" min="0" placeholder="Ex: 35.0">
+            </div>
+            <div class="form-group">
+                <label for="braco_esquerdo_contraido">Braço Esquerdo Contraído</label>
+                <input type="number" id="braco_esquerdo_contraido" name="braco_esquerdo_contraido" step="0.01" min="0" placeholder="Ex: 34.5">
+            </div>
+            <div class="form-group">
+                <label for="braco_direito_relaxado">Braço Direito Relaxado</label>
+                <input type="number" id="braco_direito_relaxado" name="braco_direito_relaxado" step="0.01" min="0" placeholder="Ex: 32.0">
+            </div>
+            <div class="form-group">
+                <label for="braco_esquerdo_relaxado">Braço Esquerdo Relaxado</label>
+                <input type="number" id="braco_esquerdo_relaxado" name="braco_esquerdo_relaxado" step="0.01" min="0" placeholder="Ex: 31.5">
+            </div>
+            <div class="form-group">
+                <label for="abdomen">Abdômen</label>
+                <input type="number" id="abdomen" name="abdomen" step="0.01" min="0" placeholder="Ex: 85.0">
+            </div>
+            <div class="form-group">
+                <label for="cintura">Cintura</label>
+                <input type="number" id="cintura" name="cintura" step="0.01" min="0" placeholder="Ex: 80.0">
+            </div>
+            <div class="form-group">
+                <label for="quadril">Quadril</label>
+                <input type="number" id="quadril" name="quadril" step="0.01" min="0" placeholder="Ex: 95.0">
+            </div>
+            <div class="form-group">
+                <label for="antebraco_direito">Antebraço Direito</label>
+                <input type="number" id="antebraco_direito" name="antebraco_direito" step="0.01" min="0" placeholder="Ex: 28.0">
+            </div>
+            <div class="form-group">
+                <label for="antebraco_esquerdo">Antebraço Esquerdo</label>
+                <input type="number" id="antebraco_esquerdo" name="antebraco_esquerdo" step="0.01" min="0" placeholder="Ex: 27.5">
+            </div>
+            <div class="form-group">
+                <label for="coxa_direita">Coxa Direita</label>
+                <input type="number" id="coxa_direita" name="coxa_direita" step="0.01" min="0" placeholder="Ex: 55.0">
+            </div>
+            <div class="form-group">
+                <label for="coxa_esquerda">Coxa Esquerda</label>
+                <input type="number" id="coxa_esquerda" name="coxa_esquerda" step="0.01" min="0" placeholder="Ex: 54.5">
+            </div>
+            <div class="form-group">
+                <label for="panturrilha_direita">Panturrilha Direita</label>
+                <input type="number" id="panturrilha_direita" name="panturrilha_direita" step="0.01" min="0" placeholder="Ex: 38.0">
+            </div>
+            <div class="form-group">
+                <label for="panturrilha_esquerda">Panturrilha Esquerda</label>
+                <input type="number" id="panturrilha_esquerda" name="panturrilha_esquerda" step="0.01" min="0" placeholder="Ex: 37.5">
+            </div>
+            <div class="form-group">
+                <label for="escapular">Escapular</label>
+                <input type="number" id="escapular" name="escapular" step="0.01" min="0" placeholder="Ex: 20.0">
+            </div>
+        </div>
+    </div>
+
+    <!-- Observações -->
+    <div class="form-section">
+        <h3>Observações</h3>
+        <div class="form-group">
+            <label for="observacoes">Observações</label>
+            <textarea id="observacoes" name="observacoes" rows="4" maxlength="1000" placeholder="Digite observações sobre a avaliação (máximo 1000 caracteres)"></textarea>
+            <div class="help-text">Máximo de 1000 caracteres</div>
+        </div>
+        <div class="form-group">
+            <label>
+                <input type="checkbox" id="completa" name="completa" value="true">
+                Avaliação completa
+            </label>
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <button type="button" class="btn btn-secondary" onclick="limparFormulario()">Limpar</button>
+        <button type="submit" class="btn btn-primary">Salvar Avaliação</button>
+    </div>
+</form>
+
+<div class="loading">
+    <p>Processando...</p>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/avaliacao.js') }}"></script>
+{% endblock %}
+

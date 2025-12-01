@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Relatórios - Registro de Evolução Física{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/relatorio.css') }}">
+{% endblock %}
+
+{% block content %}
+<h2 style="margin-bottom: 30px; color: #333;">Relatórios de Avaliações</h2>
+
+<div class="search-section">
+    <h3 style="margin-bottom: 20px; color: #333;">Buscar Avaliações</h3>
+    <form id="searchForm" class="search-form">
+        <div class="form-group">
+            <label for="aluno_id_search">ID do Aluno</label>
+            <input type="number" id="aluno_id_search" name="aluno_id" min="1" placeholder="Digite o ID do aluno" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+</div>
+
+<div id="avaliacoes-container" class="avaliacoes-list">
+    <div class="empty-state">
+        <div class="empty-state-icon"></div>
+        <h3>Nenhuma avaliação carregada</h3>
+        <p>Digite o ID do aluno e clique em "Buscar" para visualizar as avaliações</p>
+    </div>
+</div>
+
+<div class="loading">
+    <p>Carregando avaliações...</p>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/relatorio.js') }}"></script>
+{% endblock %}
+

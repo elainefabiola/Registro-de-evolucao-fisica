@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Início - Registro de Evolução Física{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <h2>Bem-vindo ao Registro de evolução física </h2>
+    <p>O módulo de Registro de Evolução Física tem como propósito fornecer um módulo  integrado ao sistema de Gestão de Academias e Atividades Esportivas.</p>
+
+    <div class="dashboard-cards">
+        <div class="card">
+            <h3>Nova Avaliação</h3>
+            <p>Registre uma nova avaliação física completa com todas as medidas corporais.</p>
+            <a href="/avaliacao" class="btn btn-primary">Criar Avaliação</a>
+        </div>
+
+        <div class="card">
+            <h3>Relatórios</h3>
+            <p>Visualize e exporte relatórios detalhados das avaliações físicas.</p>
+            <a href="/relatorio" class="btn btn-primary">Ver Relatórios</a>
+        </div>
+
+    </div>
+
+    <div>
+        <h3>Funcionalidades do Sistema</h3>
+        <ul>
+            <li><strong>Registro Completo:</strong> Peso, altura, circunferências e composição corporal</li>
+            <li><strong>Cálculo Automático:</strong> IMC e classificação automática</li>
+            <li><strong>Validação de Dados:</strong> Verificação automática de valores válidos</li>
+            <li><strong>Relatórios:</strong> Geração e exportação de relatórios detalhados e Histórico completo de avaliações</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
