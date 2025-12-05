@@ -43,28 +43,6 @@ class SistemaController:
     def validarPermissoes(self, acao):
         return self._sistemaInicializado and self._usuarioLogado is not None
     
-    def coordenarOperacoes(self, operacao, dados=None):
-        if not self.validarPermissoes(operacao):
-            return {
-                'sucesso': False,
-                'mensagem': 'Permissão negada'
-            }
-        
-        if operacao == 'criarAvaliacao':
-            return self.criarAvaliacao(dados)
-        elif operacao == 'buscarAvaliacao':
-            return self.buscarAvaliacao(dados)
-        elif operacao == 'atualizarAvaliacao':
-            return self.atualizarAvaliacao(dados)
-        elif operacao == 'excluirAvaliacao':
-            return self.excluirAvaliacao(dados)
-        elif operacao == 'gerarRelatorio':
-            return self.gerarRelatorio(dados)
-        else:
-            return {
-                'sucesso': False,
-                'mensagem': f'Operação {operacao} não reconhecida'
-            }
     
     def criarAvaliacao(self, dados_json):
         if 'aluno_id' not in dados_json or dados_json['aluno_id'] is None:
@@ -259,15 +237,3 @@ class SistemaController:
             'avaliacoes': avaliacoes_dict
         }
     
-    def exportarPDF(self, relatorio_dados):
-        return {
-            'sucesso': True,
-            'mensagem': 'Exportação para PDF não implementada',
-            'dados': relatorio_dados
-        }
-    
-    def registrar_nova_avaliacao(self, dados_json):
-        return self.criarAvaliacao(dados_json)
-    
-    def obter_historico_aluno(self, aluno_id):
-        return self.buscarAvaliacao({'aluno_id': aluno_id})

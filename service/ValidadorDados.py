@@ -17,9 +17,6 @@ class ValidadorDados:
         
         return (True, None)
     
-    def validar_peso(self, peso):
-        return self.validarPeso(peso)
-    
     def validarAltura(self, altura):
         if altura is None:
             return (False, "Altura não informada")
@@ -36,9 +33,6 @@ class ValidadorDados:
             return (False, "Altura deve ser no máximo 2.50 m")
         
         return (True, None)
-    
-    def validar_altura(self, altura):
-        return self.validarAltura(altura)
     
     def _validar_percentual_gordura(self, percentual):
         if percentual is None:
@@ -123,9 +117,6 @@ class ValidadorDados:
         
         return (True, None)
     
-    def validar_medidas(self, medidas):
-        return self.validarMedidas(medidas)
-    
     def validarFormatoNumerico(self, valor):
         if valor is None:
             return (False, "Valor não informado")
@@ -135,9 +126,6 @@ class ValidadorDados:
             return (True, None)
         except (ValueError, TypeError):
             return (False, "Valor deve ser um número")
-    
-    def validar_formato_numerico(self, valor):
-        return self.validarFormatoNumerico(valor)
     
     def validarFaixaValores(self, valor, min_valor, max_valor):
         valido, erro = self.validarFormatoNumerico(valor)
@@ -153,6 +141,3 @@ class ValidadorDados:
             return (False, f"Valor deve ser no máximo {max_valor}")
         
         return (True, None)
-    
-    def validar_faixa_valores(self, valor, min_valor, max_valor):
-        return self.validarFaixaValores(valor, min_valor, max_valor)

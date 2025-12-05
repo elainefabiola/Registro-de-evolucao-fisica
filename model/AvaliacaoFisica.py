@@ -15,7 +15,7 @@ class AvaliacaoFisica:
     def getId(self):
         return self._id
     
-    def getNomeAluno(self):
+    def getAluno(self):
         return self._aluno
     
     def getDataAvaliacao(self):
@@ -30,13 +30,10 @@ class AvaliacaoFisica:
     def getMedidasCorporais(self):
         return self._medidasCorporais
     
-    def getAluno(self):
-        return self._aluno
-    
     def setId(self, id):
         self._id = id
     
-    def setNomeAluno(self, aluno_id):
+    def setAluno(self, aluno_id):
         self._aluno = aluno_id
     
     def setDataAvaliacao(self, data):

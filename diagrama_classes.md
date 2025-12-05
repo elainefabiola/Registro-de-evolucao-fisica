@@ -18,14 +18,13 @@ classDiagram
         -boolean completa
         -MedidasCorporais medidasCorporais
         +getId() int
-        +getNomeAluno() int
+        +getAluno() int
         +getDataAvaliacao() Date
         +getObservacoes() String
         +isCompleta() boolean
         +getMedidasCorporais() MedidasCorporais
-        +getAluno() int
         +setId(id)
-        +setNomeAluno(aluno_id)
+        +setAluno(aluno_id)
         +setDataAvaliacao(data)
         +setObservacoes(obs)
         +setCompleta(completa)
@@ -89,15 +88,10 @@ classDiagram
 
     class ValidadorDados {
         +validarPeso(peso) tuple
-        +validar_peso(peso) tuple
         +validarAltura(altura) tuple
-        +validar_altura(altura) tuple
         +validarMedidas(medidas) tuple
-        +validar_medidas(medidas) tuple
         +validarFormatoNumerico(valor) tuple
-        +validar_formato_numerico(valor) tuple
         +validarFaixaValores(valor, min, max) tuple
-        +validar_faixa_valores(valor, min, max) tuple
         -_validar_percentual_gordura(percentual) tuple
         -_validar_circunferencia(valor, nome_campo) tuple
         -_validar_observacoes(observacoes) tuple
@@ -117,17 +111,13 @@ classDiagram
         +atualizarAvaliacao(dados) dict
         +excluirAvaliacao(dados) dict
         +gerarRelatorio(dados) dict
-        +exportarPDF(relatorio_dados) dict
         +inicializarSistema() boolean
         +autenticarUsuario(usuario, senha) boolean
         +validarPermissoes(acao) boolean
-        +coordenarOperacoes(operacao, dados) dict
         +getCalculadoraIMC() CalculadoraIMC
         +getValidadorDados() ValidadorDados
         +isSistemaInicializado() boolean
         +getUsuarioLogado() String
-        +registrar_nova_avaliacao(dados_json) dict
-        +obter_historico_aluno(aluno_id) dict
     }
 
     %% ===== PERSISTÊNCIA (REPOSITORY) =====
@@ -147,11 +137,6 @@ classDiagram
         -SistemaController controller
         -boolean formularioVisivel
         -String mensagemAtual
-        +exibirFormulario() dict
-        +exibirDados(dados) dict
-        +exibirMensagem(mensagem) dict
-        +ocultarFormulario() dict
-        +limparCampos() dict
         +submeterAvaliacao(dados_avaliacao) dict
         +getController() SistemaController
         +isFormularioVisivel() boolean
@@ -162,9 +147,6 @@ classDiagram
         -SistemaController controller
         -boolean relatorioCarregado
         -String formatoAtual
-        +exibirRelatorio(dados_relatorio) dict
-        +exportarRelatorio(dados_relatorio, formato) dict
-        +gerarRelatorioAluno(aluno_id) dict
         +getController() SistemaController
         +isRelatorioCarregado() boolean
         +getFormatoAtual() String
@@ -174,14 +156,6 @@ classDiagram
         -SistemaController controller
         -boolean menuAberto
         -String telaAtual
-        +exibirMenu() dict
-        +exibirDashboard() dict
-        +exibirLogin() dict
-        +exibirNavegacao() dict
-        +fecharMenu() dict
-        +trocarTela(novaTela) dict
-        +inicializar() dict
-        +fazerLogin(usuario, senha) dict
         +getController() SistemaController
         +isMenuAberto() boolean
         +getTelaAtual() String
@@ -302,21 +276,19 @@ São as telas que o usuário vê e usa:
 
 - **TelaAvaliacao**: 
   - Tela para preencher dados da avaliação
-  - Gerencia estado do formulário (visível/oculto)
   - Submete avaliação através do controller
-  - Exibe mensagens e dados
+  - Gerencia estado básico (formulário visível, mensagem atual)
+  - **Nota**: Métodos de exibição foram removidos (lógica está no frontend)
 
 - **TelaRelatorio**: 
   - Tela para ver relatórios
-  - Gera relatórios de alunos
-  - Exporta relatórios (JSON, PDF - não implementado)
-  - Gerencia formato de exportação
+  - Gerencia estado básico (relatório carregado, formato atual)
+  - **Nota**: Métodos de exibição e exportação foram removidos (lógica está no frontend)
 
 - **TelaPrincipal**: 
   - Tela principal com menu, dashboard e navegação
-  - Gerencia estado do menu (aberto/fechado)
-  - Gerencia tela atual
-  - Inicializa sistema e faz login
+  - Gerencia estado básico (menu aberto, tela atual)
+  - **Nota**: Métodos de exibição e navegação foram removidos (lógica está no frontend)
 
 ## Como Funciona na Prática?
 
@@ -363,8 +335,8 @@ São as telas que o usuário vê e usa:
 ## Métodos Principais por Classe
 
 ### **AvaliacaoFisica**
-- Getters: `getId()`, `getNomeAluno()`, `getDataAvaliacao()`, `getObservacoes()`, `isCompleta()`, `getMedidasCorporais()`, `getAluno()`
-- Setters: `setId()`, `setNomeAluno()`, `setDataAvaliacao()`, `setObservacoes()`, `setCompleta()`, `setMedidasCorporais()`
+- Getters: `getId()`, `getAluno()`, `getDataAvaliacao()`, `getObservacoes()`, `isCompleta()`, `getMedidasCorporais()`
+- Setters: `setId()`, `setAluno()`, `setDataAvaliacao()`, `setObservacoes()`, `setCompleta()`, `setMedidasCorporais()`
 - Auxiliares: `to_dict()`, `from_dict()` (classmethod)
 
 ### **MedidasCorporais**
@@ -383,31 +355,24 @@ São as telas que o usuário vê e usa:
 ### **ValidadorDados**
 - Validações públicas: `validarPeso()`, `validarAltura()`, `validarMedidas()`, `validarFormatoNumerico()`, `validarFaixaValores()`
 - Validações privadas: `_validar_percentual_gordura()`, `_validar_circunferencia()`, `_validar_observacoes()`
-- Aliases: `validar_peso()`, `validar_altura()`, `validar_medidas()`, `validar_formato_numerico()`, `validar_faixa_valores()`
 
 ### **SistemaController**
 - CRUD Avaliações: `criarAvaliacao()`, `buscarAvaliacao()`, `atualizarAvaliacao()`, `excluirAvaliacao()`
-- Relatórios: `gerarRelatorio()`, `exportarPDF()`
-- Sistema: `inicializarSistema()`, `autenticarUsuario()`, `validarPermissoes()`, `coordenarOperacoes()`
+- Relatórios: `gerarRelatorio()`
+- Sistema: `inicializarSistema()`, `autenticarUsuario()`, `validarPermissoes()`
 - Getters: `getCalculadoraIMC()`, `getValidadorDados()`, `isSistemaInicializado()`, `getUsuarioLogado()`
-- Compatibilidade: `registrar_nova_avaliacao()`, `obter_historico_aluno()`
 
 ### **AvaliacaoFisicaRepository**
 - CRUD: `criar_avaliacao_db()`, `buscar_avaliacoes_por_aluno_db()`, `atualizar_avaliacao_db()`, `excluir_avaliacao_db()`
 
 ### **TelaAvaliacao**
-- Exibição: `exibirFormulario()`, `exibirDados()`, `exibirMensagem()`, `ocultarFormulario()`, `limparCampos()`
 - Integração: `submeterAvaliacao()`
 - Getters: `getController()`, `isFormularioVisivel()`, `getMensagemAtual()`
 
 ### **TelaRelatorio**
-- Exibição: `exibirRelatorio()`, `exportarRelatorio()`
-- Integração: `gerarRelatorioAluno()`
 - Getters: `getController()`, `isRelatorioCarregado()`, `getFormatoAtual()`
 
 ### **TelaPrincipal**
-- Exibição: `exibirMenu()`, `exibirDashboard()`, `exibirLogin()`, `exibirNavegacao()`, `fecharMenu()`, `trocarTela()`
-- Integração: `inicializar()`, `fazerLogin()`
 - Getters: `getController()`, `isMenuAberto()`, `getTelaAtual()`
 
 ## Observações Importantes
@@ -426,8 +391,14 @@ São as telas que o usuário vê e usa:
 
 7. **Cálculos no Backend**: IMC e percentual de gordura são calculados no backend, não no frontend. O percentual de gordura usa a fórmula simplificada de Deurenberg: (1.20 * imc) - 5.4, com limites entre 3% e 70%.
 
-8. **Métodos Removidos**: Foram removidos métodos não utilizados da CalculadoraIMC (aliases e métodos não usados como `getFaixasIMC()` e `validarParametros()`).
+8. **Simplificações Realizadas**: 
+    - **ValidadorDados**: Removidos métodos duplicados (aliases em snake_case). Mantidos apenas métodos em camelCase.
+    - **SistemaController**: Removidos métodos não utilizados (`coordenarOperacoes()`, `exportarPDF()`, `registrar_nova_avaliacao()`, `obter_historico_aluno()`).
+    - **AvaliacaoFisica**: Removido método duplicado `getNomeAluno()`. Mantido apenas `getAluno()` e `setAluno()`.
+    - **Views**: Removidos métodos não utilizados das classes TelaAvaliacao, TelaPrincipal e TelaRelatorio (lógica de interface está no frontend).
 
 9. **Validações**: ValidadorDados tem métodos privados para validações internas (prefixo `_`).
 
 10. **Conexão com Banco de Dados**: A função `get_db_connection()` está centralizada no arquivo `app.py`. O `AvaliacaoFisicaRepository` importa essa função localmente para evitar dependência circular.
+
+11. **Código Simplificado**: O código foi simplificado para facilitar o aprendizado de estudantes, removendo duplicações e métodos não utilizados, mantendo todas as funcionalidades principais.

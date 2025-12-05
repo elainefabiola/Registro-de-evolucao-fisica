@@ -136,37 +136,29 @@ class AvaliacaoFisicaRepository:
                 for i, valor in enumerate(tupla):
                     resultado_dict[colunas[i]] = valor
                 
-                def _convert_decimal(value):
-                    if value is None:
+                def converter_decimal(valor):
+                    if valor is None:
                         return None
-                    if isinstance(value, Decimal):
-                        return float(value)
-                    return value
+                    if isinstance(valor, Decimal):
+                        return float(valor)
+                    return valor
                 
-                dados_adicionais = {
-                    'imc': _convert_decimal(resultado_dict.get('imc')),
-                    'classificacao_imc': resultado_dict.get('classificacao_imc'),
-                    'percentual_gordura': _convert_decimal(resultado_dict.get('percentual_gordura')),
-                    'peso_gordura': _convert_decimal(resultado_dict.get('peso_gordura')),
-                    'peso_muscular': _convert_decimal(resultado_dict.get('peso_muscular')),
-                    'peso_osso': _convert_decimal(resultado_dict.get('peso_osso')),
-                    'peso_residual': _convert_decimal(resultado_dict.get('peso_residual')),
-                    'torax': _convert_decimal(resultado_dict.get('torax')),
-                    'braco_direito_contraido': _convert_decimal(resultado_dict.get('braco_direito_contraido')),
-                    'braco_esquerdo_contraido': _convert_decimal(resultado_dict.get('braco_esquerdo_contraido')),
-                    'braco_direito_relaxado': _convert_decimal(resultado_dict.get('braco_direito_relaxado')),
-                    'braco_esquerdo_relaxado': _convert_decimal(resultado_dict.get('braco_esquerdo_relaxado')),
-                    'abdomen': _convert_decimal(resultado_dict.get('abdomen')),
-                    'coxa_direita': _convert_decimal(resultado_dict.get('coxa_direita')),
-                    'coxa_esquerda': _convert_decimal(resultado_dict.get('coxa_esquerda')),
-                    'antebraco_direito': _convert_decimal(resultado_dict.get('antebraco_direito')),
-                    'antebraco_esquerdo': _convert_decimal(resultado_dict.get('antebraco_esquerdo')),
-                    'panturrilha_direita': _convert_decimal(resultado_dict.get('panturrilha_direita')),
-                    'panturrilha_esquerda': _convert_decimal(resultado_dict.get('panturrilha_esquerda')),
-                    'escapular': _convert_decimal(resultado_dict.get('escapular')),
-                    'profissional_nome': resultado_dict.get('profissional_nome'),
-                    'aluno_nome': resultado_dict.get('aluno_nome')
-                }
+                campos_numericos = [
+                    'imc', 'percentual_gordura', 'peso_gordura', 'peso_muscular',
+                    'peso_osso', 'peso_residual', 'torax', 'braco_direito_contraido',
+                    'braco_esquerdo_contraido', 'braco_direito_relaxado',
+                    'braco_esquerdo_relaxado', 'abdomen', 'coxa_direita', 'coxa_esquerda',
+                    'antebraco_direito', 'antebraco_esquerdo', 'panturrilha_direita',
+                    'panturrilha_esquerda', 'escapular'
+                ]
+                
+                dados_adicionais = {}
+                for campo in campos_numericos:
+                    dados_adicionais[campo] = converter_decimal(resultado_dict.get(campo))
+                
+                dados_adicionais['classificacao_imc'] = resultado_dict.get('classificacao_imc')
+                dados_adicionais['profissional_nome'] = resultado_dict.get('profissional_nome')
+                dados_adicionais['aluno_nome'] = resultado_dict.get('aluno_nome')
                 dados_adicionais_list.append(dados_adicionais)
                 
                 medidas = MedidasCorporais(

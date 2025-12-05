@@ -5,21 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72d49b6b-a7f0-4c96-a416-47b7133ff02d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/RegistroEF.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controller/SistemaController.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/AvaliacaoFisica.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/MedidasCorporais.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/Relatorio.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/TelaAvaliacao.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/TelaPrincipal.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view/TelaRelatorio.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/SistemaController.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/SistemaController.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/AvaliacaoFisica.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/AvaliacaoFisica.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/AvaliacaoFisicaRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/repository/AvaliacaoFisicaRepository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/ValidadorDados.py" beforeDir="false" afterPath="$PROJECT_DIR$/service/ValidadorDados.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_sistema.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_sistema.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/TelaAvaliacao.py" beforeDir="false" afterPath="$PROJECT_DIR$/view/TelaAvaliacao.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/TelaPrincipal.py" beforeDir="false" afterPath="$PROJECT_DIR$/view/TelaPrincipal.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/TelaRelatorio.py" beforeDir="false" afterPath="$PROJECT_DIR$/view/TelaRelatorio.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +58,7 @@
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore_missing_gitignore&quot;: &quot;true&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/efsoares/Documentos/RegistroEFep/RegistroEF&quot;,
@@ -131,7 +125,9 @@
       <workItem from="1764585965936" duration="690000" />
       <workItem from="1764586659051" duration="12000" />
       <workItem from="1764586695075" duration="172000" />
-      <workItem from="1764588179304" duration="315000" />
+      <workItem from="1764588179304" duration="923000" />
+      <workItem from="1764719318176" duration="4000" />
+      <workItem from="1764959422571" duration="15000" />
     </task>
     <servers />
   </component>

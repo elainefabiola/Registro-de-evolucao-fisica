@@ -16,40 +16,6 @@ class TelaAvaliacao:
     def getMensagemAtual(self):
         return self._mensagemAtual
     
-    def exibirFormulario(self):
-        self._formularioVisivel = True
-        self._mensagemAtual = "Formulário de avaliação exibido"
-        return {
-            'formulario_visivel': True,
-            'mensagem': self._mensagemAtual
-        }
-    
-    def exibirDados(self, dados):
-        self._mensagemAtual = "Dados da avaliação exibidos"
-        return {
-            'dados': dados,
-            'mensagem': self._mensagemAtual
-        }
-    
-    def exibirMensagem(self, mensagem):
-        self._mensagemAtual = mensagem
-        return {
-            'mensagem': self._mensagemAtual
-        }
-    
-    def ocultarFormulario(self):
-        self._formularioVisivel = False
-        self._mensagemAtual = "Formulário ocultado"
-        return {
-            'formulario_visivel': False,
-            'mensagem': self._mensagemAtual
-        }
-    
-    def limparCampos(self):
-        self._mensagemAtual = "Campos limpos"
-        return {
-            'mensagem': self._mensagemAtual
-        }
     
     def submeterAvaliacao(self, dados_avaliacao):
         resultado = self._controller.criarAvaliacao(dados_avaliacao)
