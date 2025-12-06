@@ -6,14 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="72d49b6b-a7f0-4c96-a416-47b7133ff02d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/SistemaController.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/SistemaController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/AvaliacaoFisica.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/AvaliacaoFisica.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/AvaliacaoFisicaRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/repository/AvaliacaoFisicaRepository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ANALISE_TESTES_VS_AC.md" beforeDir="false" afterPath="$PROJECT_DIR$/ANALISE_TESTES_VS_AC.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/diagrama_classes.md" beforeDir="false" afterPath="$PROJECT_DIR$/diagrama_classes.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/CalculadoraIMC.py" beforeDir="false" afterPath="$PROJECT_DIR$/service/CalculadoraIMC.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/ValidadorDados.py" beforeDir="false" afterPath="$PROJECT_DIR$/service/ValidadorDados.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_sistema.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_sistema.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/TelaAvaliacao.py" beforeDir="false" afterPath="$PROJECT_DIR$/view/TelaAvaliacao.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/TelaPrincipal.py" beforeDir="false" afterPath="$PROJECT_DIR$/view/TelaPrincipal.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/TelaRelatorio.py" beforeDir="false" afterPath="$PROJECT_DIR$/view/TelaRelatorio.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,6 +125,8 @@
       <workItem from="1764588179304" duration="923000" />
       <workItem from="1764719318176" duration="4000" />
       <workItem from="1764959422571" duration="15000" />
+      <workItem from="1764964493636" duration="4000" />
+      <workItem from="1764976904699" duration="3000" />
     </task>
     <servers />
   </component>

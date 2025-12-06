@@ -76,6 +76,7 @@ db.sqlite3-journal
 
 # Sensitive Files
 .env
+.idea
 .env.local
 .env.*.local
 config.py

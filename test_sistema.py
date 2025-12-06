@@ -123,6 +123,54 @@ class TestValidadorDados(unittest.TestCase):
             valido, erro = self.validador.validarFaixaValores(valor_invalido, 0, 100)
             self.assertFalse(valido, f"Valor {valor_invalido} fora da faixa deveria ser inválido")
             self.assertIn(mensagem_esperada, erro)
+    
+    def test_AC3_SalvarSemTodasMedidas(self):
+        """Testa que é possível validar medidas parciais (sem todas as circunferências)"""
+        medidas_parciais = {
+            'peso': 75.0,
+            'altura': 1.80,
+            'torax': 95.0
+        }
+        valido, erro = self.validador.validarMedidas(medidas_parciais)
+        self.assertTrue(valido, "Deve permitir validar medidas parciais")
+        self.assertIsNone(erro)
+        
+        medidas_minimas = {
+            'peso': 70.0
+        }
+        valido, erro = self.validador.validarMedidas(medidas_minimas)
+        self.assertTrue(valido, "Deve permitir validar apenas peso")
+        self.assertIsNone(erro)
+    
+    def test_AC12_FormatacaoBasicaTexto(self):
+        """Testa validação de formatação básica de texto"""
+        textos_validos = [
+            "Texto simples",
+            "Texto com números 123",
+            "Texto com pontuação: ponto, vírgula; dois pontos!",
+            "Texto com acentos: áàâãéêíóôõúç",
+            "Texto com quebras de linha\n\r",
+            "Texto com espaços   múltiplos",
+            "Texto com parênteses (teste) e colchetes [teste]"
+        ]
+        for texto in textos_validos:
+            valido, erro = self.validador.validarFormatacaoTexto(texto)
+            self.assertTrue(valido, f"Texto '{texto[:20]}...' deveria ser válido")
+            self.assertIsNone(erro)
+        
+        textos_invalidos = [
+            ("<script>alert('xss')</script>", "<"),
+            ("Texto com & símbolo", "&"),
+            ("Texto com 'aspas' simples", "'"),
+            ('Texto com "aspas" duplas', '"'),
+            ("Texto com / barra", "/"),
+            ("Texto com \\ barra invertida", "\\"),
+            ("Texto com ` crase", "`")
+        ]
+        for texto, caractere_proibido in textos_invalidos:
+            valido, erro = self.validador.validarFormatacaoTexto(texto)
+            self.assertFalse(valido, f"Texto com '{caractere_proibido}' deveria ser inválido")
+            self.assertIsNotNone(erro)
 
 
 class TestCalculadoraIMC(unittest.TestCase):
@@ -203,6 +251,64 @@ class TestCalculadoraIMC(unittest.TestCase):
         for peso, altura, descricao in casos_invalidos:
             resultado = self.calculadora.calcular_percentual_gordura(peso, altura)
             self.assertIsNone(resultado, f"Percentual gordura com {descricao} deveria retornar None")
+    
+    def test_AC6_ClassificarPercentualGorduraPorIdadeGenero(self):
+        """Testa classificação de percentual de gordura por idade e gênero"""
+        casos_masculino_18_30 = [
+            (7.0, 25, "M", "Excelente"),
+            (10.0, 25, "M", "Bom"),
+            (16.0, 25, "M", "Acima da média"),
+            (20.0, 25, "M", "Média"),
+            (23.0, 25, "M", "Abaixo da média"),
+            (27.0, 25, "M", "Ruim"),
+            (32.0, 25, "M", "Muito ruim")
+        ]
+        for percentual, idade, genero, classificacao_esperada in casos_masculino_18_30:
+            resultado = self.calculadora.classificar_percentual_gordura(percentual, idade, genero)
+            self.assertIsNotNone(resultado, f"Classificação para {percentual}%, {idade} anos, {genero} deveria retornar resultado")
+            self.assertEqual(resultado, classificacao_esperada, f"Classificação incorreta para {percentual}%, {idade} anos, {genero}")
+        
+        casos_feminino_31_40 = [
+            (16.0, 35, "F", "Excelente"),
+            (20.0, 35, "F", "Bom"),
+            (23.0, 35, "F", "Acima da média"),
+            (26.0, 35, "F", "Média"),
+            (30.0, 35, "F", "Abaixo da média"),
+            (35.0, 35, "F", "Ruim"),
+            (40.0, 35, "F", "Muito ruim")
+        ]
+        for percentual, idade, genero, classificacao_esperada in casos_feminino_31_40:
+            resultado = self.calculadora.classificar_percentual_gordura(percentual, idade, genero)
+            self.assertIsNotNone(resultado, f"Classificação para {percentual}%, {idade} anos, {genero} deveria retornar resultado")
+            self.assertEqual(resultado, classificacao_esperada, f"Classificação incorreta para {percentual}%, {idade} anos, {genero}")
+        
+        casos_masculino_41_50 = [
+            (12.0, 45, "M", "Excelente"),
+            (16.0, 45, "M", "Bom"),
+            (20.0, 45, "M", "Acima da média"),
+            (24.0, 45, "M", "Média"),
+            (27.0, 45, "M", "Abaixo da média"),
+            (31.0, 45, "M", "Ruim"),
+            (35.0, 45, "M", "Muito ruim")
+        ]
+        for percentual, idade, genero, classificacao_esperada in casos_masculino_41_50:
+            resultado = self.calculadora.classificar_percentual_gordura(percentual, idade, genero)
+            self.assertIsNotNone(resultado, f"Classificação para {percentual}%, {idade} anos, {genero} deveria retornar resultado")
+            self.assertEqual(resultado, classificacao_esperada, f"Classificação incorreta para {percentual}%, {idade} anos, {genero}")
+        
+        casos_invalidos = [
+            (None, 25, "M", "Percentual None"),
+            (15.0, None, "M", "Idade None"),
+            (15.0, 25, None, "Gênero None"),
+            (2.0, 25, "M", "Percentual abaixo do mínimo"),
+            (75.0, 25, "M", "Percentual acima do máximo"),
+            (15.0, 15, "M", "Idade abaixo do mínimo"),
+            (15.0, 101, "M", "Idade acima do máximo"),
+            (15.0, 25, "X", "Gênero inválido")
+        ]
+        for percentual, idade, genero, descricao in casos_invalidos:
+            resultado = self.calculadora.classificar_percentual_gordura(percentual, idade, genero)
+            self.assertIsNone(resultado, f"Classificação com {descricao} deveria retornar None")
 
 
 if __name__ == "__main__":

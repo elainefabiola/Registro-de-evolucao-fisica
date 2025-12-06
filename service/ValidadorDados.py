@@ -80,6 +80,31 @@ class ValidadorDados:
         
         return (True, None)
     
+    def validarFormatacaoTexto(self, texto):
+        """
+        Valida se o texto contém apenas formatação básica permitida.
+        Permite: letras, números, espaços, pontuação básica, quebras de linha, acentos.
+        Não permite: HTML, tags, scripts, caracteres especiais perigosos.
+        
+        Args:
+            texto: Texto a ser validado (string)
+        
+        Returns:
+            Tupla (valido, erro): (True, None) se válido, (False, mensagem_erro) se inválido
+        """
+        if texto is None or texto == "":
+            return (True, None)
+        
+        texto_str = str(texto)
+        
+        caracteres_proibidos = ['<', '>', '&', '"', "'", '/', '\\', '`', '|']
+        
+        for char in caracteres_proibidos:
+            if char in texto_str:
+                return (False, f"Texto não pode conter o caractere '{char}'. Use apenas texto simples.")
+        
+        return (True, None)
+    
     def validarMedidas(self, medidas):
         if 'peso' in medidas:
             valido, erro = self.validarPeso(medidas['peso'])
