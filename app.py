@@ -5,7 +5,7 @@ from mysql.connector import Error
 from controller.SistemaController import SistemaController
 
 DB_CONFIG = {
-    "host": "srv651.hstgr.io",
+    "host": "212.1.208.51",
     "port": 3306,
     "user": "u592878919_ufscar",
     "password": "2X7O;N1+ds#g",
