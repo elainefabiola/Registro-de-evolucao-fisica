@@ -8,7 +8,7 @@ DB_CONFIG = {
     "host": "212.1.208.51",
     "port": 3306,
     "user": "u592878919_ufscar",
-    "password": "2X7O;N1+ds#g",
+    "password": "",
     "database": "u592878919_ufscar",
     "ssl_disabled": True
 }
